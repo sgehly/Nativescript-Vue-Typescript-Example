@@ -1,0 +1,52 @@
+{
+  "name": "nativescript-template-thing",
+  "version": "1.0.0",
+  "description": "HELP",
+  "author": "Sam Gehly <sam@gehly.net>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --env.tnsAction build",
+    "build:android": "npm run build -- --env.android",
+    "build:ios": "npm run build -- --env.ios",
+    "debug": "webpack --watch --env.tnsAction debug",
+    "debug:android": "npm run debug -- --env.android",
+    "debug:ios": "npm run debug -- --env.ios",
+    "watch": "webpack --watch --env.tnsAction run",
+    "watch:android": "npm run watch -- --env.android",
+    "watch:ios": "npm run watch -- --env.ios",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "nativescript-theme-core": "*",
+    "nativescript-vue": "*",
+    "tns-core-modules": "*",
+    "ts-loader": "^4.4.1",
+    "typescript": "^2.9.1",
+    "vue": "^2.5.16",
+    "webpack": "^4.12.0"
+  },
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-plugin-transform-object-rest-spread": "*",
+    "babel-preset-env": "*",
+    "copy-webpack-plugin": "*",
+    "css-loader": "*",
+    "extract-text-webpack-plugin": "*",
+    "fs-extra": "*",
+    "nativescript-vue-externals": "*",
+    "nativescript-vue-loader": "*",
+    "nativescript-vue-target": "git+https://github.com/sgehly/nativescript-vue-target.git",
+    "nativescript-vue-template-compiler": "*",
+    "node-sass": "^4.9.0",
+    "ns-vue-loader": "git+https://github.com/sgehly/ns-vue-loader.git",
+    "optimize-css-assets-webpack-plugin": "*",
+    "rimraf": "*",
+    "sass-loader": "*",
+    "style-loader": "*",
+    "vue-template-compiler": "*",
+    "webpack-cli": "^3.0.3",
+    "webpack-synchronizable-shell-plugin": "*",
+    "winston-color": "*"
+  }
+}
