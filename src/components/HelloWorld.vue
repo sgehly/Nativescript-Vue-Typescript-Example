@@ -26,7 +26,8 @@
 
 <style scoped>
   .hello-world {
-    margin: 20;
+    padding: 20px;
+    text-align: center;
   }
 
   Label {

@@ -1,15 +1,16 @@
 {
-  "name": "feline-app-template",
-  "description": "Template for Feline Nativescript Applications",
+  "name": "nativescript-app-template",
+  "description": "Template for Nativescript Applications",
   "license": "MIT",
-  "readme": "Feline App Template",
+  "readme": "Nativescript App Template",
   "nativescript": {
-    "id": "io.feline.nativescriptTemplate"
+    "id": "help.help.nativescriptTemplate"
   },
   "dependencies": {
     "nativescript-theme-core": "*",
-    "nativescript-vue": "*",
-    "tns-core-modules": "~3.4.1"
+    "nativescript-vue": "^1.4.0-alpha.0",
+    "tns-core-modules": "~4.1.0",
+    "nativescript-vue-target": "git+https://github.com/sgehly/nativescript-vue-target.git"
   },
   "devDependencies": {
     "babel-traverse": "6.26.0",

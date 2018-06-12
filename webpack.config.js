@@ -2,11 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const winston = require('winston-color');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackSynchronizableShellPlugin = require('webpack-synchronizable-shell-plugin');
 const NativeScriptVueExternals = require('nativescript-vue-externals');
 const NativeScriptVueTarget = require('nativescript-vue-target');
+const devMode = process.env.NODE_ENV !== 'production'
 
 // Prepare NativeScript application from template (if necessary)
 require('./prepare')();
@@ -15,6 +16,7 @@ require('./prepare')();
 const config = (platform, launchArgs) => {
 
   winston.info(`Bundling application for ${platform}...`);
+
 
   return {
 
@@ -39,31 +41,16 @@ const config = (platform, launchArgs) => {
         {
           test: /\.ts$/,
           exclude: /(node_modules)/,
-          loader: 'ts-loader',
-          options: {
-            appendTsSuffixTo: [/\.vue$/]
-          }
+          loader: 'ts-loader'
         },
         {
-          test: /\.tsx$/,
-          exclude: /(node_modules)/,
-          loader: 'ts-loader',
-          options: {
-            appendTsSuffixTo: [/\.vue$/]
-          }
-        },
-        {
-          test: /\.scss$/,
+          test: /\.(scss|css)$/,
           use: [
-              "css-loader", // translates CSS into CommonJS
-              "sass-loader" // compiles Sass to CSS
-          ]
-        },
-
-        {
-          test: /\.css$/,
-          use: [
-              "css-loader", // translates CSS into CommonJS
+              MiniCssExtractPlugin.loader,
+              {
+                loader: "css-loader"
+              },
+              "sass-loader"
           ]
         },
 
@@ -72,8 +59,19 @@ const config = (platform, launchArgs) => {
           loader: 'ns-vue-loader',
           options: {
             loaders: {
-              css: 'css-loader',
-              scss: 'sass-loader',
+              css: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: "css-loader"
+                }
+              ],
+              scss: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: "css-loader"
+                },
+                'sass-loader'
+              ]
             },
           },
         },
@@ -101,23 +99,23 @@ const config = (platform, launchArgs) => {
       ],
     },
 
-    optimization: {
-      minimize: false
-    },
-
     externals: NativeScriptVueExternals,
 
     plugins: [
-
-      // Optimize CSS output
-      new OptimizeCssAssetsPlugin({
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: devMode ? 'app.'+platform+'.css' : '[name].[hash].css',
+        //chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+      }),
+      /*new OptimizeCssAssetsPlugin({
         cssProcessor: require('cssnano'),
         cssProcessorOptions: {
           discardComments: { removeAll: true },
           normalizeUrl: false
         },
         canPrint: false,
-      }),
+      }),*/
 
       // Copy src/assets/**/* to dist/
       new CopyWebpackPlugin([

@@ -8,6 +8,12 @@
 		"skipLibCheck": true,
 		"esModuleInterop": false,
 		"noEmitOnError": true,
+		"allowSyntheticDefaultImports": true,
+		"typeRoots" : [
+			"./typings",
+			"./node_modules/@types"
+		],
+
 		"lib": [
 			"es6",
 			"dom"
@@ -15,15 +21,15 @@
 		"baseUrl": ".",
 		"paths": {
 			"*": [
+				"./typings/*",
 				"./node_modules/tns-core-modules/*",
 				"./node_modules/*"
 			]
 		}
 	},
 	"files": [
-		"typings/nativescript-vue.d.ts",
-		"typings/vue.d.ts",
-		"typings/sfc.d.ts",
+		"./typings/vue.d.ts",
+		"./typings/sfc.d.ts",
 	],
 	"exclude": [
 		"node_modules",
