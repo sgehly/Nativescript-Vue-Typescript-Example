@@ -5,15 +5,15 @@
   "author": "Sam Gehly <sam@gehly.net>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack -- --env.tnsAction build",
-    "build:android": "npm run build -- --env.android",
-    "build:ios": "npm run build -- --env.ios",
-    "debug": "webpack --watch -- --env.tnsAction=debug",
-    "debug:android": "npm run debug -- --env.android",
-    "debug:ios": "npm run debug -- --env.ios",
-    "watch": "webpack --watch -- --env.tnsAction=run",
-    "watch:android": "npm run watch -- --env.android",
-    "watch:ios": "npm run watch -- --env.ios",
+    "build": "webpack --env.tnsAction=build",
+    "build:android": "webpack --env.tnsAction=build --env.android",
+    "build:ios": "webpack --env.tnsAction=build --env.ios",
+    "debug": "webpack --watch --env.tnsAction=debug",
+    "debug:android": "webpack --env.tnsAction=debug --env.android --watch",
+    "debug:ios": "webpack --env.tnsAction=debug --env.ios --watch",
+    "watch": "webpack --watch --env.tnsAction=run",
+    "watch:android": "webpack --env.tnsAction=run --env.android --watch",
+    "watch:ios": "webpack --env.tnsAction=run --env.ios --watch",
     "clean": "rimraf dist"
   },
   "dependencies": {
@@ -49,7 +49,6 @@
     "style-loader": "*",
     "vue-template-compiler": "*",
     "webpack-cli": "^3.0.4",
-    "webpack-command": "^0.2.1",
     "webpack-synchronizable-shell-plugin": "*",
     "winston-color": "*"
   }
